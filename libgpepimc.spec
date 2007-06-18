@@ -1,5 +1,5 @@
-Summary:	libgpepimc library
-Summary(pl.UTF-8):	Biblioteka libgpepimc
+Summary:	GPE PIM Categories library
+Summary(pl.UTF-8):	Biblioteka kategorii GPE PIM
 Name:		libgpepimc
 Version:	0.8
 Release:	1
@@ -7,23 +7,27 @@ License:	LGPL
 Group:		Libraries
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.bz2
 # Source0-md5:	308f75a47ab738cb2955f8a8051728e5
+Source1:	%{name}.pl.po
 URL:		http://gpe.linuxtogo.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	gtk+2-devel >= 2:2.2
+BuildRequires:	intltool >= 0.23
 BuildRequires:	libgpewidget-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 BuildRequires:	sqlite-devel
 # hildon-libs-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-libgpepimc library.
+GPE PIM Categories library.
 
 %description -l pl.UTF-8
-Biblioteka libgpepimc.
+Biblioteka kategorii GPE PIM.
 
 %package devel
 Summary:	Header files for libgpepimc
@@ -67,8 +71,12 @@ Dokumentacja API libgpepimc.
 %prep
 %setup -q
 
+cp %{SOURCE1} po/pl.po
+sed -i -e 's/ALL_LINGUAS=""/ALL_LINGUAS="pl"/' configure.ac
+
 %build
 %{__gtkdocize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -83,13 +91,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc ChangeLog
 %attr(755,root,root) %{_libdir}/libgpepimc.so.*.*.*

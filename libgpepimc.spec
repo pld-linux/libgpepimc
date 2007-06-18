@@ -1,13 +1,13 @@
-#
 Summary:	libgpepimc library
+Summary(pl.UTF-8):	Biblioteka libgpepimc
 Name:		libgpepimc
 Version:	0.8
 Release:	1
 License:	LGPL
-Group:		Development/Libraries
+Group:		Libraries
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.bz2
 # Source0-md5:	308f75a47ab738cb2955f8a8051728e5
-URL:		http://gpe.linuxtogo.org
+URL:		http://gpe.linuxtogo.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk-doc >= 1.8
@@ -16,24 +16,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 libgpepimc library.
 
-%package apidocs
-Summary:	libgpepimc API documentation
-Summary(pl.UTF-8):	Dokumentacja API libgpepimc
-Group:		Documentation
-Requires:	gtk-doc-common
-
-%description apidocs
-libgpepimc API documentation.
-
-%description apidocs -l pl.UTF-8
-Dokumentacja API libgpepimc.
+%description -l pl.UTF-8
+Biblioteka libgpepimc.
 
 %package devel
 Summary:	Header files for libgpepimc
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgpepimc
 Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libgpepimc.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki libgpepimc.
 
 %package static
 Summary:	Static libgpepimc library
@@ -46,6 +42,18 @@ Static libgpepimc library.
 
 %description static -l pl.UTF-8
 Statyczna biblioteka libgpepimc.
+
+%package apidocs
+Summary:	libgpepimc API documentation
+Summary(pl.UTF-8):	Dokumentacja API libgpepimc
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+libgpepimc API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API libgpepimc.
 
 %prep
 %setup -q
@@ -74,23 +82,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root)    %{_libdir}/libgpepimc.so.0.0.0
-
-
-%files apidocs
-%defattr(644,root,root,755)
-%{_gtkdocdir}/libgpepimc
+%attr(755,root,root) %{_libdir}/libgpepimc.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgpepimc.so
 %{_libdir}/libgpepimc.la
-%{_libdir}/libgpepimc.so
+%{_includedir}/gpe/pim-categories-ui.h
+%{_includedir}/gpe/pim-categories.h
 %{_pkgconfigdir}/libgpepimc.pc
-%{_includedir}/gpe/pim-categories-ui.h
-%{_includedir}/gpe/pim-categories-ui.h
-%{_includedir}/gpe/pim-categories.h
-%{_includedir}/gpe/pim-categories.h
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgpepimc.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/libgpepimc

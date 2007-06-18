@@ -8,9 +8,15 @@ Group:		Libraries
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.bz2
 # Source0-md5:	308f75a47ab738cb2955f8a8051728e5
 URL:		http://gpe.linuxtogo.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	gtk-doc >= 1.8
+BuildRequires:	gtk+2-devel >= 2:2.2
+BuildRequires:	libgpewidget-devel
+BuildRequires:	libtool
+BuildRequires:	pkgconfig
+BuildRequires:	sqlite-devel
+# hildon-libs-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,6 +30,9 @@ Summary:	Header files for libgpepimc
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgpepimc
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	gtk+2-devel >= 2:2.2
+Requires:	libgpewidget-devel
+Requires:	sqlite-devel
 
 %description devel
 Header files for libgpepimc.
@@ -82,6 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc ChangeLog
 %attr(755,root,root) %{_libdir}/libgpepimc.so.*.*.*
 
 %files devel

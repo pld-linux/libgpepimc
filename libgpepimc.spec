@@ -1,12 +1,12 @@
 Summary:	GPE PIM Categories library
 Summary(pl.UTF-8):	Biblioteka kategorii GPE PIM
 Name:		libgpepimc
-Version:	0.8
+Version:	0.9
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://gpe.linuxtogo.org/download/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	308f75a47ab738cb2955f8a8051728e5
+# Source0-md5:	0d22564e0a897b3be2eb9d2fc71fbd65
 Source1:	%{name}.pl.po
 URL:		http://gpe.linuxtogo.org/
 BuildRequires:	autoconf >= 2.59

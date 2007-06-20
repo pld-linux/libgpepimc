@@ -18,6 +18,7 @@ BuildRequires:	intltool >= 0.23
 BuildRequires:	libgpewidget-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRequires:	sed >= 4.0
 BuildRequires:	sqlite-devel
 # hildon-libs-devel
